@@ -89,7 +89,25 @@ var upperCasedCharacters = [
 ];
 
 // Function to prompt user for password options
-function getPasswordOptions() {
+function getPasswordOptions(options) {
+  
+    var options = {
+      passwordLength: prompt(
+        "Length of password: "
+      ),
+
+
+    };
+    
+    
+    
+    
+    if (passwordLength >= 10 && passwordLength <= 64) {
+
+    }
+    
+      return options;
+    
 
 }
 
@@ -100,6 +118,8 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
+  getPasswordOptions();
+  
 
 }
 
@@ -112,6 +132,7 @@ function writePassword() {
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
+  return passwordLength;
 }
 
 // Add event listener to generate button
