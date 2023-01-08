@@ -1,7 +1,8 @@
+// Array of special characters to be included in password
+  var passwordLength = 10;
+  var arrChoices = [];
 
-arraysObject = {
-  // Array of special characters to be included in password
-  specialCharacters: [
+var specialCharacters = [
     "@",
     "%",
     "+",
@@ -25,12 +26,12 @@ arraysObject = {
     "-",
     "_",
     ".",
-  ],
+  ];
   // Array of numeric characters to be included in password
-  numericCharacters: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  var numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   // Array of lowercase characters to be included in password
-  lowerCasedCharacters: [
+  var lowerCasedCharacters = [
     "a",
     "b",
     "c",
@@ -57,10 +58,10 @@ arraysObject = {
     "x",
     "y",
     "z",
-  ],
+  ];
 
   // Array of uppercase characters to be included in password
-  upperCasedCharacters: [
+  var upperCasedCharacters = [
     "A",
     "B",
     "C",
@@ -87,42 +88,79 @@ arraysObject = {
     "X",
     "Y",
     "Z",
-  ],
-};
+  ];
 
-
-
+  
 // Function to prompt user for password options
-//Checking if the user is entering the right number or not.
-function getPasswordOptions(options) {
-    while(true) {
-      var passwordLength = prompt("Enter a number for the length of the password: (at least 10 characters but no more than 64");
+function getPasswordOptions() {
+  //Prompts
 
+  //Length of password: At least 10 characters but no more than 64 )if statement)
 
-      if (passwordLength === null) {
-        return false;
-      }
-      passwordLength = parseInt(passwordLength);
-      if (passwordLength >= 10 && passwordLength <= 64) {
-        return true;
-      }
-    }
-   alert("Password must be between 10 and 64 characters long. Please try again")
+  //Character types
+  //Lowercase
+  //Uppercase
+  //Numeric
+  //Special characters
+
+    //reset arrChoices everytime function is called
+    arrChoices = [];
+
+  //prompt for password length
+  passwordLength = parseInt(prompt("How many characters would you like in your password? (10 - 64 characters)"));
+  //Handle what happens if they enter an incorrect number or something that is not a number
+  if (isNaN(passwordLength) || passwordLength < 10 || passwordLength > 64) {
+    alert(
+      "Length must be a number and also be between 10 and 64 digits long. Please try again"
+    );
+    return false;
+  }
+
+  //ask users yes or no if they want which type of character from each array
+  if (confirm("Do you want lowercase characters in your password?")) {
+    arrChoices = arrChoices.concat(lowerCasedCharacters);
+  }
+
+  if (confirm("Do you want uppercase characters in your password?")) {
+    arrChoices = arrChoices.concat(upperCasedCharacters);
+  }
+
+  if (confirm("Do you want special characters in your password?")) {
+    arrChoices = arrChoices.concat(specialCharacters);
+  }
+
+  if (confirm("Do you want numbers in your password?")) {
+    arrChoices = arrChoices.concat(numericCharacters);
+  }
+
+  return true;
 }
 
-// 
+    
 
 // Function for getting a random element from an array
-function getRandom(arr) {
-
-
-   
+function getRandom() {
 
 }
 
 // Function to generate password with user input
 function generatePassword() {
-  getPasswordOptions();
+
+  var password = "";
+  for (var i = 0; i < arrChoices.length; i++) {
+    
+  }
+
+  //1. prompt user for password criteria.
+    //a. Password length
+    //b. Lowercase, Uppercase, numbers, special characters
+  //2. validate input (user unput is valid)
+  //3. Generate password based on criteria
+  //4. Display password to the page (return variable)
+
+  console.log("button clicked")
+  //generate random password
+  return "Password here" //return variable
 }
 
 // Get references to the #generate element
@@ -130,11 +168,19 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+    var passwordOptions = getPasswordOptions();
 
-  passwordText.value = password;
-  return passwordLength;
+    if(passwordOptions) {
+      var password = generatePassword();
+      var passwordText = document.querySelector("#password");
+
+      passwordText.value = password;
+      return passwordLength;
+
+    }
+
+
+  
 }
 
 // Add event listener to generate button
