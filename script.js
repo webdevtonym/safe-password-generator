@@ -147,8 +147,10 @@ function getRandom() {
 function generatePassword() {
 
   var password = "";
-  for (var i = 0; i < arrChoices.length; i++) {
-    
+  for (var i = 0; i < passwordLength.length; i++) {
+      var findRandomLetter = Math.floor(Math.random() * arrChoices.length)
+      password += arrChoices[randomIndex];
+
   }
 
   //1. prompt user for password criteria.
