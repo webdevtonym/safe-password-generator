@@ -126,31 +126,38 @@ function getPasswordOptions(passwordLength) {
     arrChoices = arrChoices.concat(numericCharacters);
   }
 
-  return arrChoices;
+  // return arrChoices;
 }
+
+// =========================================================
 
 // Function for getting a random element from an array
 function getRandom(arrChoices) {
   //getPasswordOptions needs to be in here somewhere.
   newPassword = "";
   for (var i = 0; i < arrChoices.length; i++) {
-    var findRandomIndex = Math.floor(Math.random() * arrChoices.length);
+    
+    // getPasswordOptions(i);
+    var findRandomIndex = Math.floor(Math.random() * newPassword.length);
     newPassword += arrChoices[findRandomIndex];
+
+  } 
+    // return getRandom(newPassword);
     return newPassword;
-  }
+
+
 }
 
 // Function to generate password with user input
-function generatePassword(arrChoices, passwordLength) {
-  //getPasswordOptions
-  
+function generatePassword(newPassword, passwordLength) {
+
+  getPasswordOptions();
   var newPassword = "";
-  // getRandom(arrChoices);
   for (var i = 0; i < passwordLength; i++) {
-    var randomChar = getRandom(arrChoices, passwordLength);
-    newPassword += randomChar;
-    return getRandom(arrChoices); //return variable
+   newPassword += getRandom();
+    //return variable
   }
+  return newPassword; 
 }
 
 // Get references to the #generate element
@@ -158,13 +165,13 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  console.log("button clicked");
-  // var passwordOptions = getPasswordOptions(passwordLength);
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
+  passwordText.value = password;
 
-  var newPassword = generatePassword();
-  passwordText.value = newPassword;
-  return writePassword(newPassword);
+
+  // var newPassword = generatePassword();
+  // return writePassword(newPassword);
 
   // passwordText.value = "";
 }
