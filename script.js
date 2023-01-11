@@ -138,7 +138,7 @@ function generatePassword() {
 
   getPasswordOptions();
   var newPassword = "";
-  for (var i = 0; i < arrChoices; i++) {
+  for (var i = 0; i < arrChoices.length; i++) {
   var randomIndex = Math.floor(Math.random() * arrChoices.length)
    newPassword += arrChoices[randomIndex];
   }
