@@ -93,7 +93,7 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions(passwordLength) {
   //reset arrChoices everytime function is called
-  // arrChoices = [];
+  arrChoices = [];
 
   //prompt for password length
   passwordLength = parseInt(
@@ -131,31 +131,16 @@ function getPasswordOptions(passwordLength) {
 
 // =========================================================
 
-// Function for getting a random element from an array
-function getRandom(arrChoices) {
-  //getPasswordOptions needs to be in here somewhere.
-  newPassword = "";
-  for (var i = 0; i < arrChoices.length; i++) {
-    
-    // getPasswordOptions(i);
-    var findRandomIndex = Math.floor(Math.random() * newPassword.length);
-    newPassword += arrChoices[findRandomIndex];
 
-  } 
-    // return getRandom(newPassword);
-    return newPassword;
-
-
-}
 
 // Function to generate password with user input
-function generatePassword(newPassword, passwordLength) {
+function generatePassword() {
 
   getPasswordOptions();
   var newPassword = "";
-  for (var i = 0; i < passwordLength; i++) {
-   newPassword += getRandom();
-    //return variable
+  for (var i = 0; i < arrChoices; i++) {
+  var randomIndex = Math.floor(Math.random() * arrChoices.length)
+   newPassword += arrChoices[randomIndex];
   }
   return newPassword; 
 }
@@ -168,12 +153,6 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-
-
-  // var newPassword = generatePassword();
-  // return writePassword(newPassword);
-
-  // passwordText.value = "";
 }
 
 // Add event listener to generate button
