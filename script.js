@@ -93,7 +93,7 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions(passwordLength) {
   //reset arrChoices everytime function is called
-  arrChoices = [];
+  // arrChoices = [];
 
   //prompt for password length
   passwordLength = parseInt(
@@ -130,48 +130,43 @@ function getPasswordOptions(passwordLength) {
 }
 
 // Function for getting a random element from an array
-function getRandom(arrChoices, passwordLength) {
+function getRandom(arrChoices) {
+  //getPasswordOptions needs to be in here somewhere.
   newPassword = "";
-  for (var i = 0; i < arrChoices; i++) {
+  for (var i = 0; i < arrChoices.length; i++) {
     var findRandomIndex = Math.floor(Math.random() * arrChoices.length);
     newPassword += arrChoices[findRandomIndex];
-  return arrChoices[passwordLength];
-
+    return newPassword;
   }
 }
 
 // Function to generate password with user input
-function generatePassword() {
-  {
-    if (arrChoices.length === 0) {
-      alert("You must select at least one character type");
-      return "";
-    }
-    var newPassword = "";
-    getRandom(arrChoices);
-    for (var i = 0; i < passwordLength; i++) {
-      var randomChar = getRandom(arrChoices, passwordLength);
-      newPassword += randomChar;
-      return getRandom(arrChoices); //return variable
-    }
+function generatePassword(arrChoices, passwordLength) {
+  //getPasswordOptions
+  
+  var newPassword = "";
+  // getRandom(arrChoices);
+  for (var i = 0; i < passwordLength; i++) {
+    var randomChar = getRandom(arrChoices, passwordLength);
+    newPassword += randomChar;
+    return getRandom(arrChoices); //return variable
   }
 }
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
   console.log("button clicked");
-  var passwordOptions = getPasswordOptions(passwordLength);
+  // var passwordOptions = getPasswordOptions(passwordLength);
   var passwordText = document.querySelector("#password");
 
-  if (passwordOptions) {
-    var newPassword = generatePassword();
-    passwordText.value = newPassword;
-    return passwordOptions;
-  } else {
-    passwordText.value = "";
-  }
+  var newPassword = generatePassword();
+  passwordText.value = newPassword;
+  return writePassword(newPassword);
+
+  // passwordText.value = "";
 }
 
 // Add event listener to generate button
